@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 // @ts-ignore
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
-import * as turf from '@turf/turf';
+import * as turf from '@turf/turf'
 
 export const TOKEN = 'pk.eyJ1IjoibWFyb29uZWRpb25lIiwiYSI6ImNqdmp0MzB1azBpcDAzem1naHZwMjNndGIifQ.65nvvRg9Qe\n' +
   'FUV2c6b9W4Vw';
@@ -36,6 +36,7 @@ export class MapComponent implements OnInit {
 
     const draw = new MapboxDraw({
       displayControlsDefault: true,
+      // Select which mapbox-gl-draw control buttons to add to the map.
       controls: {
         polygon: true,
         trash: true,
@@ -54,6 +55,7 @@ export class MapComponent implements OnInit {
       const answer = document.getElementById('calculated-area') as HTMLElement;
       if (data.features.length > 0) {
         const area = turf.area(data);
+        // Restrict the area to 2 decimal points.
         const rounded_area = Math.round(area * 100) / 100;
         answer.innerHTML = `<p><strong>${rounded_area}</strong></p><p>square meters</p>`;
       } else {
